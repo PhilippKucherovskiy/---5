@@ -4,15 +4,13 @@ namespace Итоговый_пр_т_Модуля_5
 {
     class Program
     {
-       static (string Name, string Surname, int Age) Main(string[] args)
-       {
+        static (string Name, string Surname, int Age) Main(string[] args)
+        {
             (string Name, string Surname, int Age) User1;
-            
             var tulpe = EnterUser();
-
+            EnterUser();
             static (string Name, string Surname, int Age) EnterUser();
-            
-            { 
+            {
                 Console.WriteLine("Введите Ваше имя:");
                 User1.Name = Console.ReadLine();
 
@@ -25,12 +23,20 @@ namespace Итоговый_пр_т_Модуля_5
                 {
                     Console.WriteLine("Введите Ваш возраст цифрами:");
                     age = Console.ReadLine();
-                    
-                } while (CheckNum(age, out intage) == true); 
+
+                } while (CheckNum(age, out intage) == true);
 
                 User1.Age = intage;
                 return User1;
             }
+            //вывожу на консоль
+            static void PrintUser1();
+            {
+                Console.WriteLine("Ваше имя: {0}, \n Ваша фамилия:{1} ,\n Ваш возраст:{2}", User1.Name, User1.Surname, User1.Age);
+            }
+
+
+
             //номер проверочный  метод
             static bool CheckNum(string number, out int corrnumber)
             {
@@ -47,8 +53,8 @@ namespace Итоговый_пр_т_Модуля_5
                     return true;
                 }
             }
-           
-            
+
+
             //подсчет животных и проверка
             static bool CheckHasPets()
             {
@@ -60,9 +66,9 @@ namespace Итоговый_пр_т_Модуля_5
                 { return true; }
                 return false;
             }
-             
-            
-           (bool HasPets, int PetsAmount, string [] PetsNames, bool HasColors, int ColorsAmount, string [] FavColors) User;
+
+
+            (bool HasPets, int PetsAmount, string[] PetsNames, bool HasColors, int ColorsAmount, string[] FavColors) User;
             CheckHasPets();
             User.HasPets = CheckHasPets();
             string petcount;
@@ -140,12 +146,17 @@ namespace Итоговый_пр_т_Модуля_5
 
                 return resultcolor;
             }
-            Print();
-            static void Print()
+            //вывожу на консоль
+            static void PrintUser();
             {
-                Console.WriteLine("Таким образом Ваша Анкета выглядит так:");
-                Console.WriteLine("Ваше имя: {0}, /n Ваша фамилия:{1}, Есть ли домашние животные?{2}, Клички Ваших домашних животных:{3}, Есть ли любимые цвета? {4}, Любимые цвета: {5}");
+                Console.WriteLine("Есть ли у Вас питомцы?: {0}, \n Клички Ваших питомцев:{1} ,\n Есть ли у Вас любимые цвета?:{2}, \nВаши любимые цвета:{3} ", User.HasPets, User.PetsNames, User.HasColors, User.FavColors);
             }
+
+            Console.WriteLine("Таким образом Ваша Анкета выглядит так:");
+            PrintUser1();
+            PrintUser();
+
+
             Console.ReadKey();
         }
             
